@@ -4,6 +4,21 @@
   "version": "1.0.0",
   "license": "MIT",
   "main": "start-desktop.js",
+  
+  "builds": [
+    {
+      "src": "client",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "server",
+      "use": "@vercel/node"
+    }
+  ],
+  "routes": [
+    { "src": "/server/(.*)", "dest": "/server/$1" },
+    { "src": "/(.*)", "dest": "/client/$1" }
+  ],
   "scripts": {
     "start":"node start-web",
     "start:electron":"electron .",
